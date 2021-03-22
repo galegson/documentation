@@ -1,0 +1,16 @@
+---
+- hosts: k8s
+  become_user: root
+  become_method: sudo
+  tasks: 
+  
+        - name: Delete deployment
+          command: kubectl delete deployment galegson-deployment
+          ignore_errors: yes
+        - name: Deploy App
+          command: kubectl create -f deploy.yml
+        - name: Delete service if exist
+          command: kubectl delete service galegson-service
+          ignore_errors: yes   
+        - name: Deploy Service
+          command: kubectl create -f service.yml

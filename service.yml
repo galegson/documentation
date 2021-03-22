@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: galegson-service
+  labels:
+    app: galegson-devops-project
+spec:
+  selector:
+    app: galegson-devops-project
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 31200
+
